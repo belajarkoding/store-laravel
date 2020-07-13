@@ -28,8 +28,8 @@
           </div>
           <div class="list-group list-group-flush">
             <a
-              href="/dashboard.html"
-              class="list-group-item list-group-item-action"
+              href="{{ route('admin-dashboard') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin')) ? 'active' : '' }} "
             >
               Dashboard
             </a>
@@ -52,8 +52,8 @@
               Transactions
             </a>
             <a
-              href="#"
-              class="list-group-item list-group-item-action"
+              href="{{ route('user.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/user*')) ? 'active' : '' }} "
             >
               Users
             </a>
