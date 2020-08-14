@@ -21,6 +21,9 @@ Route::get('/cart', 'CartController@index')->name('cart');
 Route::delete('/cart/{id}', 'CartController@delete')->name('cart-delete');
 Route::get('/success', 'CartController@success')->name('success');
 
+Route::post('/checkout', 'CheckoutController@process')->name('checkout');
+Route::post('/checkout/callback', 'CheckoutController@callback')->name('midtrans-callback');
+
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
 Route::get('/dashboard', 'DashboardController@index')
