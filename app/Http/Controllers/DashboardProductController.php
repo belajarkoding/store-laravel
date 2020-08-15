@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Product;
 use App\Category;
+use App\ProductGallery;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\ProductRequest;
 
 class DashboardProductController extends Controller
 {
@@ -32,5 +35,23 @@ class DashboardProductController extends Controller
             'users' => $users,
             'categories' => $categories
         ]);
+    }
+
+    
+
+    public function store(ProductRequest $request)
+    {
+        $data = $request->all();
+
+        $data['slug'] = Str::slug($request->name);
+        $product = Product::create($data);
+
+        $gallery = [
+            'products_id' => $product->id,
+            'photos' => $request->file('photo')->store('assets/product', 'public')
+        ];
+        ProductGallery::create($gallery);
+
+        return redirect()->route('dashboard-product');
     }
 }
