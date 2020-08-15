@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 
 class DashboardProductController extends Controller
@@ -10,7 +12,7 @@ class DashboardProductController extends Controller
     public function index()
     {
         $products = Product::with(['galleries','category'])->get();
-        
+
         return view('pages.dashboard-products',[
             'products' => $products
         ]);
@@ -23,6 +25,12 @@ class DashboardProductController extends Controller
 
     public function create()
     {
-        return view('pages.dashboard-products-create');
+        $users = User::all();
+        $categories = Category::all();
+
+        return view('pages.dashboard-products-create',[
+            'users' => $users,
+            'categories' => $categories
+        ]);
     }
 }

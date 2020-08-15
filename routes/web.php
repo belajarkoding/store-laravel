@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth']], function () {
         ->name('dashboard-product');
     Route::get('/dashboard/products/create', 'DashboardProductController@create')
         ->name('dashboard-product-create');
+    Route::post('/dashboard/products', 'DashboardProductController@store')
+        ->name('dashboard-product-store');
     Route::get('/dashboard/products/{id}', 'DashboardProductController@details')
         ->name('dashboard-product-details');
 
