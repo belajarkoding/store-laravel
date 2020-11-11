@@ -19,7 +19,7 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $user->update($request->except('total_price'));
 
-        // Proses checkout 
+        // Proses checkout
         $code = 'STORE-' . mt_rand(0000,9999);
         $carts = Cart::with(['product','user'])
                     ->where('users_id', Auth::user()->id)
